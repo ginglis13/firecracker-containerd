@@ -116,6 +116,7 @@ steps:
     env:
       DOCKER_IMAGE_TAG: "$BUILDKITE_BUILD_NUMBER"
       FICD_DM_VOLUME_GROUP: fcci-vg
+      CRITEST_BUILD_NUMBER: "$BUILDKITE_BUILD_NUMBER"
     command:
       - make -C runtime critest FICD_DM_POOL=build_${BUILDKITE_BUILD_NUMBER}_critest
     timeout_in_minutes: 10
