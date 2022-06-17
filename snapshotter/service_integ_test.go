@@ -138,8 +138,8 @@ func launchContainerWithRemoteSnapshotterInVM(ctx context.Context, vmID string) 
 		return fmt.Errorf("Failed to configure VM metadata for registry resolution [%v]", err)
 	}
 
+	// Image pull is timing out occasionally #673
 	image, err := client.Pull(ctx, imageRef,
-		containerd.WithPullUnpack,
 		containerd.WithPullSnapshotter(snapshotterName),
 		containerd.WithImageHandlerWrapper(source.AppendDefaultLabelsHandlerWrapper(imageRef, 10*1024*1024)),
 	)
